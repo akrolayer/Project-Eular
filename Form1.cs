@@ -14,6 +14,7 @@ namespace project_eular
 {
     public partial class Form1 : Form
     {
+        public const string Ans = "Answer =  ";
         public Form1()
         {
             InitializeComponent();
@@ -28,7 +29,7 @@ namespace project_eular
             {
                 if (i % 3 == 0 || i % 5 == 0) Sum += i;
             }
-            label1.Text = "Answer = " + Sum.ToString();
+            label1.Text = Ans + Sum.ToString();
 
         }
 
@@ -49,7 +50,7 @@ namespace project_eular
                     Sum += Fibonacci[i];
                 }
             }
-            label1.Text = "Answer = " + Sum;
+            label1.Text = Ans + Sum;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -69,7 +70,7 @@ namespace project_eular
             }
             if (Number < i) { Number = i; }
             string Answer = Number.ToString();
-            label1.Text = "Answer= " + Answer;
+            label1.Text = Ans + Answer;
         }
 
 
@@ -93,9 +94,7 @@ namespace project_eular
                     }
                 }
             }
-            label1.Text = "Answer= " + Max;
-            string a = DateTime.Now.Year.ToString();
-            label1.Text = a;
+            label1.Text = Ans + Max;
         }
         public static long Gcd(long a, long b)
         {
@@ -138,7 +137,7 @@ namespace project_eular
                     }
                 }
             }
-            label1.Text = "Answer = " + Answer;
+            label1.Text = Ans + Answer;
             */
             long i;
             long n = 1;
@@ -146,7 +145,7 @@ namespace project_eular
             {
                 n = lcm(n, i);
             }
-            label1.Text = "Answer= " + n;
+            label1.Text = Ans + n;
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -157,7 +156,7 @@ namespace project_eular
             int SumSquare = Sum * Sum;
             int SquareSum = (n * (n + 1) * (2 * n + 1)) / 6;
             int Answer = SumSquare - SquareSum;
-            label1.Text = "Answer = " + Answer;
+            label1.Text = Ans + Answer;
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -199,7 +198,7 @@ namespace project_eular
                     PrimeNumberList.Add(IntegerList[a]);
                 }
             }
-            label1.Text = "Answer = " + PrimeNumberList[10000];
+            label1.Text = Ans + PrimeNumberList[10000];
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -231,7 +230,7 @@ namespace project_eular
                     MaxNumber = Number;
                 }
             }
-            label1.Text = "Answer = " + MaxNumber;
+            label1.Text = Ans + MaxNumber;
         }
 
         private void button9_Click(object sender, EventArgs e)
@@ -309,7 +308,7 @@ namespace project_eular
                 PrimeSum += PrimeNumberList[i];
             }
             sw.Stop();
-            label1.Text = "Answer = " + PrimeSum+" "+sw.Elapsed;
+            label1.Text = Ans + PrimeSum+" "+sw.Elapsed;
         }
         public static int Max4(int a, int b, int c, int d)
         {
@@ -372,7 +371,7 @@ namespace project_eular
                     if (MaxValue < Max) MaxValue = Max;
                 }
             }
-            label1.Text = "Answer = " + MaxValue;
+            label1.Text = Ans + MaxValue;
         }
 
         private void button12_Click(object sender, EventArgs e)
@@ -400,7 +399,7 @@ namespace project_eular
                 if (NumberOfPrime + 1 >= 500) { break; }
                 i++;
             }
-            label1.Text = "Answer = " + TriangularNumber;
+            label1.Text = Ans + TriangularNumber;
         }
         private void button13_Click(object sender, EventArgs e)
         {
@@ -441,7 +440,7 @@ namespace project_eular
                 else
                 {
                     string Answer = Number.ToString();
-                    label1.Text = "Answer = " + Answer.Substring(0, 10);
+                    label1.Text = Ans + Answer.Substring(0, 10);
                 }
             }
 
@@ -477,7 +476,7 @@ namespace project_eular
                     MaxCount = Count;
                 }
             }
-            label1.Text = "Answer = " + MaxCountNumber;
+            label1.Text = Ans + MaxCountNumber;
         }
 
         private void button15_Click(object sender, EventArgs e)
@@ -499,7 +498,7 @@ namespace project_eular
                     }
                 }
             }
-            label1.Text = "Answer = " + Numer / Denom;
+            label1.Text = Ans + Numer / Denom;
         }
 
         private void button16_Click(object sender, EventArgs e)
@@ -517,7 +516,7 @@ namespace project_eular
                 char EachNumber = NumberString[i];
                 SumEachNumber += (EachNumber - '0');
             }
-            label1.Text = "Answer = " + SumEachNumber;
+            label1.Text = Ans + SumEachNumber;
 
         }
 
@@ -536,7 +535,7 @@ namespace project_eular
             long LetterNumber8 = 3 * (99 * (5 + HundredAnd) + LetterNumber1 + LetterNumber2 + LetterNumber3 + LetterNumber4 + LetterNumber5);//301~399,701~799,801~899
             long OneThousand = 11;
             long Answer = LetterNumber1 + LetterNumber2 + LetterNumber3 + LetterNumber4 + LetterNumber5 + LetterNumber6 + LetterNumber7 + LetterNumber8 + Hundred + OneThousand;
-            label1.Text = "Answer = " + Answer;
+            label1.Text = Ans + Answer;
         }
         //problem18はまだ理解できてない
         internal struct MyStack
@@ -582,7 +581,7 @@ namespace project_eular
                     if (Max < Popped.SumValue)
                     {
                         Max = Popped.SumValue;
-                        label1.Text = "Answer = " + Popped.SumValue;
+                        label1.Text = Ans + Popped.SumValue;
                     }
                     continue;
                 }
@@ -646,7 +645,7 @@ namespace project_eular
                 }
                 Date1 = Date1.AddMonths(1);
             }
-            label1.Text = "Answer = " + Count;
+            label1.Text = Ans + Count;
         }
 
         private void button20_Click(object sender, EventArgs e)
@@ -664,7 +663,7 @@ namespace project_eular
                 char EachNumber = NumberString[i];
                 SumEachNumber += (EachNumber - '0');
             }
-            label1.Text = "Answer = " + SumEachNumber;
+            label1.Text = Ans + SumEachNumber;
         }
 
         private void button21_Click(object sender, EventArgs e)
@@ -699,7 +698,7 @@ namespace project_eular
                     }
                 }
             }
-            label1.Text = "Answer = " + AmicableSum / 2;//同じ組を2回数えてしまうため2で割る
+            label1.Text = Ans + AmicableSum / 2;//同じ組を2回数えてしまうため2で割る
         }
 
         private void button22_Click(object sender, EventArgs e)
@@ -730,7 +729,7 @@ namespace project_eular
                 ScoreSum += Score;
                 i++;
             }
-            label1.Text = "answer = " + ScoreSum;
+            label1.Text = Ans + ScoreSum;
         }
 
         private void button23_Click(object sender, EventArgs e)
@@ -779,7 +778,7 @@ namespace project_eular
             NumberHash.SymmetricExceptWith(MakedAbundantNumberList);
             int Sum = NumberHash.Sum();
 
-            label1.Text = "Answer = " + Sum;
+            label1.Text = Ans + Sum;
         }
 
         private void button24_Click(object sender, EventArgs e)
@@ -806,7 +805,7 @@ namespace project_eular
                 }
             }
             NumberList.Sort();
-            label1.Text = "Answer = " + NumberList[274240 - 1];
+            label1.Text = Ans + NumberList[274240 - 1];
         }
 
         private void button25_Click(object sender, EventArgs e)
@@ -822,7 +821,7 @@ namespace project_eular
                 string NumberString = Value.ToString();
                 if (NumberString.Length == 1000)
                 {
-                    label1.Text = "Answer = " + (i + 2);
+                    label1.Text = Ans + (i + 2);
                     break;
                 }
             }
@@ -866,7 +865,7 @@ namespace project_eular
                     MaxValue = (int)i;
                 }
             }
-            label1.Text = "Answer = " + MaxValue + " CycleLength = " + MaxCount;
+            label1.Text = Ans + MaxValue + " CycleLength = " + MaxCount;
         }
         public static int Sosuu(int n)
         {
@@ -911,7 +910,7 @@ namespace project_eular
                     Value += plus;
                 }
             }
-            label1.Text = "Answer = " + Value;
+            label1.Text = Ans + Value;
         }
 
         private void button29_Click(object sender, EventArgs e)
@@ -924,7 +923,7 @@ namespace project_eular
                     List.Add(BigInteger.Pow(i, j));
                 }
             }
-            label1.Text = "Answer = " + List.Count;
+            label1.Text = Ans + List.Count;
         }
 
         private void button30_Click(object sender, EventArgs e)
@@ -953,7 +952,7 @@ namespace project_eular
                 }
                 PowSum = 0;
             }
-            label1.Text = "Answer = " + AnswerSum;
+            label1.Text = Ans + AnswerSum;
         }
 
         //まだ理解できてない
@@ -975,7 +974,7 @@ namespace project_eular
                     Money[NewInd] += Money[i];
                 }
             }
-            label1.Text = "answer = " + Money[UB];
+            label1.Text = Ans + Money[UB];
         }
 
         private void button32_Click(object sender, EventArgs e)
@@ -1001,7 +1000,7 @@ namespace project_eular
                 }
             }
             int NumberSum = NumberSumHash.Sum();
-            label1.Text = "Answer = " + NumberSum;
+            label1.Text = Ans + NumberSum;
         }
         public static int[] Normal(int Numer, int Denom)
         {
@@ -1061,7 +1060,7 @@ namespace project_eular
                 AnswerDenom *= FindList[i + 1];
             }
             NormalList = Normal(AnswerNumer, AnswerDenom);
-            label1.Text = "Answer = " + NormalList[1];
+            label1.Text = Ans + NormalList[1];
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -1189,7 +1188,7 @@ namespace project_eular
                     }
                 }
             }
-            label1.Text = "Answer = " + Sum;
+            label1.Text = Ans + Sum;
         }
 
         private void button37_Click(object sender, EventArgs e)
@@ -1223,7 +1222,7 @@ namespace project_eular
                     PrimeCount = 0;
                 }
             }
-            label1.Text = "Answer = " + sum;
+            label1.Text = Ans + sum;
         }
 
         private void button38_Click(object sender, EventArgs e)
@@ -1256,7 +1255,7 @@ namespace project_eular
                     }
                 }
             }
-            label1.Text = "answer = " + max;
+            label1.Text = Ans + max;
         }
 
         private void button39_Click(object sender, EventArgs e)
@@ -1298,7 +1297,7 @@ namespace project_eular
                     count = 0;
                 }
             }
-            label1.Text = "Answer= " + MaxNumber.ToString();
+            label1.Text = Ans + MaxNumber.ToString();
         }
 
         public static uint Champernowne(uint Number)
@@ -1333,7 +1332,7 @@ namespace project_eular
                 Index *= 10;
                 Answer *= d[a];
             }
-            label1.Text = "Answer = " + Answer.ToString();
+            label1.Text = Ans + Answer.ToString();
         }
 
         private void button41_Click(object sender, EventArgs e)
@@ -1364,7 +1363,7 @@ namespace project_eular
                     }
                 }
             }
-            label1.Text = "Answer= " + Max;
+            label1.Text = Ans + Max;
         }
 
         private void button42_Click(object sender, EventArgs e)
@@ -1401,7 +1400,7 @@ namespace project_eular
                     Delta += i;
                 }
             }
-            label1.Text = "Answer = " + Count.ToString();
+            label1.Text = Ans + Count.ToString();
         }
 
         private void button43_Click(object sender, EventArgs e)
@@ -1434,7 +1433,7 @@ namespace project_eular
                     }
                 }
             }
-            label1.Text = "Answer= " + sum.ToString();
+            label1.Text = Ans + sum.ToString();
         }
         static bool WillEdakiri(string Number)
         {
@@ -1465,7 +1464,7 @@ namespace project_eular
                         if (PentaList.Contains(PentaList[i] + PentaList[j]) && PentaList.Contains(Math.Abs(PentaList[i] - PentaList[j])))
                         {
                             textBox1.AppendText(PentaList[i] + " " + PentaList[j] + " ");
-                            label1.Text = "Answer = " + Math.Abs(PentaList[i] - PentaList[j]);
+                            label1.Text = Ans + Math.Abs(PentaList[i] - PentaList[j]);
                             sw.Stop();
                             textBox1.AppendText($"{sw.ElapsedMilliseconds}");
                             goto end;
@@ -1516,7 +1515,7 @@ namespace project_eular
                     continue;
                 }
             }
-            label1.Text = "answer = " + Triangle;
+            label1.Text = Ans + Triangle;
         }
 
         private void button46_Click(object sender, EventArgs e)
@@ -1537,7 +1536,7 @@ namespace project_eular
                     }
                 }
             }
-            label1.Text = "Answer = " + IntegerList.Min();
+            label1.Text = Ans + IntegerList.Min();
         }
 
         private void button47_Click(object sender, EventArgs e)
@@ -1570,7 +1569,7 @@ namespace project_eular
                 }
                 if (Count == 4)
                 {
-                    label1.Text = "Answer = " + (i - 3);
+                    label1.Text = Ans + (i - 3);
                     break;
                 }
                 Hash.Clear();
@@ -1596,7 +1595,7 @@ namespace project_eular
                 Sum %= 10000000000;
                 Number = 1;
             }
-            label1.Text = "Answer = " + Sum;
+            label1.Text = Ans + Sum;
         }
 
         private void button49_Click(object sender, EventArgs e)
@@ -1623,7 +1622,7 @@ namespace project_eular
                         if (list1.SequenceEqual(list2) && list2.SequenceEqual(list3))
                         {
                             string Answer = Number[0].ToString() + Number[1].ToString() + Number[2].ToString();
-                            label1.Text = "Answer = " + Answer;
+                            label1.Text = Ans + Answer;
                         }
                     }
                 }
@@ -1659,7 +1658,7 @@ namespace project_eular
                     }
                 }
             }
-            label1.Text = "Answer = " + Answer;
+            label1.Text = Ans + Answer;
         }
 
         private void button51_Click(object sender, EventArgs e)
@@ -1704,7 +1703,7 @@ namespace project_eular
                         if (i == 4 && count < 1) goto NextPattern;
                         if (count == 8)
                         {
-                            label1.Text = "Answer=" + JudgeNumber;
+                            label1.Text = Ans + JudgeNumber;
                             break;
                         }
                     }
@@ -1742,7 +1741,7 @@ namespace project_eular
                     else { break; }
                     if (EqualCount == List.Count-1)
                     {
-                        label1.Text = "Answer=" + NumberString;
+                        label1.Text = Ans + NumberString;
                         goto end;
                     }
                 }
@@ -1774,7 +1773,7 @@ namespace project_eular
                     }
                 }
             }
-            label1.Text = "Answer= " + count;
+            label1.Text = Ans + count;
         }
         public static int ConvertValue(string Value)
         {
@@ -1939,7 +1938,7 @@ namespace project_eular
                     }
                 }
             }
-            label1.Text = "Answer= " + P1WinCount;
+            label1.Text = Ans + P1WinCount;
         }
         public static BigInteger BigIntReverse(BigInteger Value)
         {
@@ -1969,7 +1968,7 @@ namespace project_eular
                 }
                 Value = 0;
             }
-            label1.Text = "Answer=" + Count;
+            label1.Text = Ans + Count;
         }
 
         private void button56_Click(object sender, EventArgs e)
@@ -1997,7 +1996,7 @@ namespace project_eular
 
                 }
             }
-            label1.Text = "Answer=" + MaxNumberSum;
+            label1.Text = Ans + MaxNumberSum;
             
         }
 
@@ -2020,7 +2019,7 @@ namespace project_eular
                     textBox1.AppendText(" " + NumerList[i] + "," + DenomList[i]);
                 }
             }
-            label1.Text = "Answer=" + Count;
+            label1.Text = Ans + Count;
         }
 
         private void button58_Click(object sender, EventArgs e)
@@ -2052,7 +2051,7 @@ namespace project_eular
                     break;
                 }
             }
-            label1.Text = "Answer = " +SideLength;
+            label1.Text = Ans +SideLength;
         }
 
         private void button59_Click(object sender, EventArgs e)
@@ -2121,7 +2120,7 @@ namespace project_eular
                 PlainSum += Plain;
             }
 
-            label1.Text = "Answer=" + PlainSum;
+            label1.Text = Ans + PlainSum;
         }
 
         public static bool StringCombineToInt(int string1,int string2)
@@ -2193,7 +2192,7 @@ namespace project_eular
                     }                  
                 }
             }
-            label1.Text = "Answer=" + Sum +" "+ sw.Elapsed.ToString();
+            label1.Text = Ans + Sum +" "+ sw.Elapsed.ToString();
         }
 
         private void button61_Click(object sender, EventArgs e)
