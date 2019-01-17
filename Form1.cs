@@ -2155,44 +2155,74 @@ namespace project_eular
             }
             return true;
         }
+
+        struct StackState
+        {
+            internal List<int> ValList;
+            internal string Path;
+        }
+        public static bool Sosuu(long n)
+        {
+            if (n <= 1) return false;
+            for (BigInteger i = 2; i * i < n; i++)
+            {
+                if (n % i == 0) return false;
+            }
+            return true;
+        }
         private void button60_Click(object sender, EventArgs e)
         {
             var sw = System.Diagnostics.Stopwatch.StartNew();
-            int Sum = 100000;
-            var PrimeList = new List<int>(Eratosthenes(10000));
-            int[] Prime = new int[5];
-            for(int index1 = 0; index1 < PrimeList.Count; index1++)
+            int SumLimit = 30000;
+            var PrimeList = new List<int>(Eratosthenes(SumLimit));
+
+            var Stk = new Stack<StackState>();
+            StackState WillPush;
+            foreach (int Each in PrimeList)
             {
-                Prime[0] = PrimeList[index1];
-                for (int index2 = 1; index2 < PrimeList.Count; index2++)
-                {
-                    Prime[1] = PrimeList[index2];
-                    if (Prime[0] > Prime[1]) continue;
-                    for (int index3 = 2; index3 < PrimeList.Count; index3++)
-                    {
-                        Prime[2] = PrimeList[index3];
-                        if (Prime[1] > Prime[2]) continue;
-                        for (int index4 = 3; index4 < PrimeList.Count; index4++)
-                        {
-                            Prime[3] = PrimeList[index4];
-                            if (Prime[2] > Prime[3]) continue;
-                            for (int index5 = 4; index5 < PrimeList.Count; index5++)
-                            {
-                                Prime[4] = PrimeList[index5];
-                                if (Prime[3] > Prime[4]) continue;
-                                if (Judge(Prime) == true)
-                                {
-                                    if (Sum > Prime.Sum())
-                                    {
-                                        Sum = Prime.Sum();
-                                    }
-                                }
-                            }
-                        }
-                    }                  
-                }
+                WillPush.ValList = new List<int> { Each };
+                WillPush.Path = Each.ToString() + ",";
+                Stk.Push(WillPush);
             }
-            label1.Text = Ans + Sum +" "+ sw.Elapsed.ToString();
+
+            string AnswerPath = "";
+            int AnswerSumMin = SumLimit;
+            int ComboCount = 5;
+
+            while (Stk.Count > 0)
+            {
+                StackState Popped = Stk.Pop();
+                //textBox1.AppendText(string.Format("{0} Path={1} 候補={2}", sw.Elapsed, Popped.Path, AnswerPath));
+
+                int wkSum = Popped.ValList.Sum();
+
+                //if (AnswerSumMin > wkSum) { AnswerSumMin = wkSum; }
+                if (Popped.ValList.Count == ComboCount && wkSum < AnswerSumMin)
+                {
+                    AnswerSumMin = wkSum;
+                    AnswerPath = Popped.Path;
+                    continue;
+                }
+
+                int ValCnt = Popped.ValList.Count;
+                int RestCnt = ComboCount - ValCnt;
+
+                int LastVal = Popped.ValList[ValCnt - 1];
+                foreach (int Each in PrimeList.Where(X => X > LastVal && AnswerSumMin > wkSum + X * RestCnt))
+                {
+                    bool flag;
+                    flag = Popped.ValList.TrueForAll(X => Sosuu(long.Parse(X.ToString() + Each.ToString())));
+                    if (flag == false) continue;
+                    flag = Popped.ValList.TrueForAll(X => Sosuu(long.Parse(Each.ToString() + X.ToString())));
+                    if (flag == false) continue;
+
+                    WillPush.ValList = new List<int>(Popped.ValList);
+                    WillPush.ValList.Add(Each);
+                    WillPush.Path = Popped.Path + Each.ToString() + ",";
+                    Stk.Push(WillPush);
+                }
+                label1.Text = "Answer=" + AnswerSumMin.ToString();
+            }
         }
 
         private void button61_Click(object sender, EventArgs e)
