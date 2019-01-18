@@ -2227,7 +2227,22 @@ namespace project_eular
 
         private void button61_Click(object sender, EventArgs e)
         {
-
+                    int delta = 0;
+                    int square = 0;
+                    int penta = 0;
+                    int hexa = 0;
+                    int hepta = 0;
+                    int octa = 0;
+                    
+                    for(int i = 0; delta < 10000; i++){ 
+                        delta = (i * (i + 1)) / 2;
+                        if(square < 10000) {square = i * i;}
+                        if(penta < 10000) {penta = (i * (3 * i)) / 2;}
+                        if(hexa < 10000) {hexa = i * (2 * i - 1);}
+                        if(hepta < 10000) {hepta = (i * (5 * i - 3)) / 2;}
+                        if(octa < 10000) {octa = i * (3 * n - 2);}
+                    }
+                    
         }
     }
 }
