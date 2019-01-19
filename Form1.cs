@@ -2227,22 +2227,35 @@ namespace project_eular
 
         private void button61_Click(object sender, EventArgs e)
         {
-                    int delta = 0;
-                    int square = 0;
-                    int penta = 0;
-                    int hexa = 0;
-                    int hepta = 0;
-                    int octa = 0;
-                    
-                    for(int i = 0; delta < 10000; i++){ 
-                        delta = (i * (i + 1)) / 2;
-                        if(square < 10000) {square = i * i;}
-                        if(penta < 10000) {penta = (i * (3 * i)) / 2;}
-                        if(hexa < 10000) {hexa = i * (2 * i - 1);}
-                        if(hepta < 10000) {hepta = (i * (5 * i - 3)) / 2;}
-                        if(octa < 10000) {octa = i * (3 * n - 2);}
-                    }
-                    
+            var triangle = new List<int>();
+            int triangleDelta = 2;
+            int value = 1;
+            var answer = new List<int>();
+            for (int i = 0; value < 10000; i++)
+            {
+                value += triangleDelta;
+                triangle.Add(value);
+                triangleDelta++;
+            }
+            var quadrilateral = new List<int>(calcPolygon(triangle, 1));
+            var pentagon = new List<int>(calcPolygon(triangle, 2));
+            var hexagon = new List<int>(calcPolygon(triangle, 3));
+            var heptagon = new List<int>(calcPolygon(triangle, 4));
+            var octagon = new List<int>(calcPolygon(triangle, 5));
+
+            triangle.RemoveAll(X => X < 1000);
+            triangle.RemoveAll(X => X > 10000);
+        }
+        public static List<int> calcPolygon(List<int> list, int a)
+        {
+            var valueList = new List<int>();
+            int value = 0;
+            for (int i = 1; i < list.Count; i++)
+            {
+                value = list[i] + (a * list[i - 1]);
+                if (999 < value && value < 10000) valueList.Add(value);
+            }
+            return valueList;
         }
     }
 }
