@@ -2243,8 +2243,27 @@ namespace project_eular
             var heptagon = new List<int>(calcPolygon(triangle, 4));
             var octagon = new List<int>(calcPolygon(triangle, 5));
 
-            triangle.RemoveAll(X => X < 1000);
-            triangle.RemoveAll(X => X > 10000);
+            triangle.RemoveAll(X => X <= 1000);
+            triangle.RemoveAll(X => X >= 10000);
+
+            for(int i = 0; i < 1000; i++)
+            {
+                int Upper = triangle[i] / 100;
+                int Under = triangle[i] % 100;
+                if (Under == pentagon[i]) / 100{ } 
+            }
+        }
+        public static int SearchNextNumber(List<int> list, int Under)
+        {
+            int NextNumber = 0;
+
+            //ここで次の数を探す。下2桁の数字が次の数字の上2桁と一致しているかを見て、その数字を返す処理を書く
+
+            for (int i = 0; i < 1000; i++)
+            {
+                if (Under == list[i] / 100) { }
+            }
+            return NextNumber;
         }
         public static List<int> calcPolygon(List<int> list, int a)
         {
