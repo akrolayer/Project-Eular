@@ -2231,6 +2231,7 @@ namespace project_eular
             int triangleDelta = 2;
             int value = 1;
             var answer = new List<int>();
+            int[] flagArray = new int[5] { 0, 0, 0, 0, 0 };
             for (int i = 0; value < 10000; i++)
             {
                 value += triangleDelta;
@@ -2246,24 +2247,32 @@ namespace project_eular
             triangle.RemoveAll(X => X <= 1000);
             triangle.RemoveAll(X => X >= 10000);
 
+            //どうやって次の数字を見つけて循環まで行くか考え中
             for(int i = 0; i < 1000; i++)
             {
                 int Upper = triangle[i] / 100;
                 int Under = triangle[i] % 100;
-                if (Under == pentagon[i]) / 100{ } 
+                int NextResult = SearchNextNumber(quadrilateral, Under);
+                if (NextResult != 0)
+                {
+                    flagArray[0] = 1;
+                    NextResult = SearchNextNumber(pentagon, Upper);
+                }
+                
             }
         }
+
         public static int SearchNextNumber(List<int> list, int Under)
         {
             int NextNumber = 0;
 
             //ここで次の数を探す。下2桁の数字が次の数字の上2桁と一致しているかを見て、その数字を返す処理を書く
 
-            for (int i = 0; i < 1000; i++)
+            foreach (int i in list)
             {
-                if (Under == list[i] / 100) { }
+                if (Under == list[i] / 100) { return NextNumber; }
             }
-            return NextNumber;
+            return 0;
         }
         public static List<int> calcPolygon(List<int> list, int a)
         {
