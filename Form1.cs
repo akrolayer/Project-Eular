@@ -120,25 +120,6 @@ namespace project_eular
         private void button5_Click(object sender, EventArgs e)
         {
             //1 から 20 までの整数全てで割り切れる数字の中で最小の正の数
-            /*long Number = 2520;
-            long Answer = 0;
-            for(int i = 20; i > 10; i--)
-            {
-                if(Number % i != 0)
-                {
-                    Number += 1 ;
-                    i = 20;
-                }
-                else
-                {
-                    if (i == 11)
-                    {
-                        Answer = Number;
-                    }
-                }
-            }
-            label1.Text = Ans + Answer;
-            */
             long i;
             long n = 1;
             for (i = 1; i <= 20; i++)
@@ -2243,10 +2224,7 @@ namespace project_eular
             var hexagon = new List<int>(calcPolygon(triangle, 3));
             var heptagon = new List<int>(calcPolygon(triangle, 4));
             var octagon = new List<int>(calcPolygon(triangle, 5));
-
-            triangle.RemoveAll(X => X <= 1000);
-            triangle.RemoveAll(X => X >= 10000);
-
+            
             //どうやって次の数字を見つけて循環まで行くか考え中
             for(int i = 0; i < 1000; i++)
             {
@@ -2257,8 +2235,7 @@ namespace project_eular
                 {
                     flagArray[0] = 1;
                     NextResult = SearchNextNumber(pentagon, Upper);
-                }
-                
+                }           
             }
         }
 
