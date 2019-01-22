@@ -684,7 +684,6 @@ namespace project_eular
 
         private void button22_Click(object sender, EventArgs e)
         {
-            //ソートまではできた
             string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\names.txt";
             Encoding utf8 = Encoding.GetEncoding("utf-8");
             string Name = "";
@@ -806,12 +805,6 @@ namespace project_eular
                     break;
                 }
             }
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
         }
 
         public static int Cycle(BigInteger Value)
