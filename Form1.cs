@@ -1037,10 +1037,6 @@ namespace project_eular
             label1.Text = Ans + NormalList[1];
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
         public static int fact(int Number)
         {
             int CalcNumber = 1;
