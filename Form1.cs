@@ -1111,29 +1111,31 @@ namespace project_eular
             return PrimeNumberList;
         }
 
-        private void button35_Click(object sender, EventArgs e)
+       private void button35_Click(object sender, EventArgs e)
         {
             int CircularPrimeCount = 0;
             var PrimeNumberList = new List<int>(Eratosthenes(1000000));
+            int PrimeNumberListCount = PrimeNumberList.Count;
 
-            for (int i = 2; i <= 1000000; i++)
+            for (int i = 0; i < PrimeNumberListCount; i++)
             {
                 int JudgeCount = 0;
-                for (int j = 0; j < i.ToString().Length; j++)
+                int PrimeNumberListLength = PrimeNumberList[i].ToString().Length;
+                for (int j = 0; j < PrimeNumberListLength; j++)
                 {
-                    string CircularNumberString = i.ToString().Substring(j) + i.ToString().Substring(0, j);
+                    string CircularNumberString = PrimeNumberList[i].ToString().Substring(j) + PrimeNumberList[i].ToString().Substring(0, j);
                     if (PrimeNumberList.Contains(int.Parse(CircularNumberString)))
                     {
                         JudgeCount++;
                     }
                 }
-                if (JudgeCount == i.ToString().Length)
+                if (JudgeCount == PrimeNumberListLength)
                 {
                     CircularPrimeCount++;
-                    //textBox1.AppendText(CircularPrimeCount.ToString() + " ");
+                    textBox1.AppendText(CircularPrimeCount.ToString() + " ");
                 }
             }
-            label1.Text = "Answer" + CircularPrimeCount.ToString();
+            label1.Text = "Answer = " + CircularPrimeCount;
         }
 
         private void button36_Click(object sender, EventArgs e)
