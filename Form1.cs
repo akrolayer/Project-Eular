@@ -401,7 +401,7 @@ namespace project_eular
                 }
                 catch (Exception ex)
                 {
-
+                    MessageBox.Show(ex.Message, "エラー");
                 }
             }
             long Number = 0;
@@ -695,7 +695,7 @@ namespace project_eular
                 }
                 catch (Exception ex)
                 {
-
+                    MessageBox.Show(ex.Message, "エラー");
                 }
             }
             char[] DelimiterChars = { ',' };
@@ -1349,9 +1349,9 @@ namespace project_eular
                 {
                     Word = Reader.ReadToEnd();
                 }
-                catch
+                catch (Exception ex)
                 {
-
+                    MessageBox.Show(ex.Message, "エラー");
                 }
             }
             char[] DelimiterChars = { ',' };
@@ -1868,7 +1868,7 @@ namespace project_eular
                 }
                 catch (Exception ex)
                 {
-
+                        MessageBox.Show(ex.Message, "エラー");
                 }
             }
             char[] DelimiterChars = { ' ' };
@@ -2040,7 +2040,7 @@ namespace project_eular
                 }
                 catch (Exception ex)
                 {
-
+                    MessageBox.Show(ex.Message, "エラー");
                 }
             }
             char[] DelimiterChars = { ',' };
