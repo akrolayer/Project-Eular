@@ -422,7 +422,7 @@ namespace project_eular
                 }
                 catch (Exception ex)
                 {
-
+                    MessageBox.Show(ex.Message, "エラー");
                 }
             }
             long Number = 0;
@@ -716,7 +716,7 @@ namespace project_eular
                 }
                 catch (Exception ex)
                 {
-
+                    MessageBox.Show(ex.Message, "エラー");
                 }
             }
             char[] DelimiterChars = { ',' };
@@ -1140,7 +1140,7 @@ namespace project_eular
             return PrimeNumberList;
         }
 
-        private void button35_Click(object sender, EventArgs e)
+       private void button35_Click(object sender, EventArgs e)
         {
             int CircularPrimeCount = 0;
             var PrimeNumberList = new List<int>(Eratosthenes(1000000));
@@ -1378,9 +1378,9 @@ namespace project_eular
                 {
                     Word = Reader.ReadToEnd();
                 }
-                catch
+                catch (Exception ex)
                 {
-
+                    MessageBox.Show(ex.Message, "エラー");
                 }
             }
             char[] DelimiterChars = { ',' };
@@ -1899,7 +1899,7 @@ namespace project_eular
                 }
                 catch (Exception ex)
                 {
-
+                        MessageBox.Show(ex.Message, "エラー");
                 }
             }
             char[] DelimiterChars = { ' ' };
@@ -2071,7 +2071,7 @@ namespace project_eular
                 }
                 catch (Exception ex)
                 {
-
+                    MessageBox.Show(ex.Message, "エラー");
                 }
             }
             char[] DelimiterChars = { ',' };
