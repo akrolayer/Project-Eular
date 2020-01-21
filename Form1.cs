@@ -2228,82 +2228,160 @@ namespace project_eular
 
         }
 
+        struct StackState2
+        {
+            internal List<int> cornerList;
+            internal List<int> ValList;
+        }
+        static Dictionary<int, List<int>> cornerDict = new Dictionary<int, List<int>>();
         private void button61_Click(object sender, EventArgs e)
         {
-            var triangle = new List<int>();
-            int triangleDelta = 2;
-            int value = 1;
-            var answer = new List<int>();
-            for (int i = 0; value < 10000; i++)
+            const int NeedsCornerCnt = 6;
+            CalcCorner();
+
+            var stk = new Stack<StackState2>();
+            StackState2 WillPush;
+
+            foreach (int Each in cornerDict[3])
             {
-                value += triangleDelta;
-                triangle.Add(value);
-                triangleDelta++;
+                WillPush.cornerList = new List<int>() { 3 };
+                WillPush.ValList = new List<int>() { Each };
+                stk.Push(WillPush);
             }
-            var quadrilateral = new List<int>(calcPolygon(triangle, 1));
-            var pentagon = new List<int>(calcPolygon(triangle, 2));
-            var hexagon = new List<int>(calcPolygon(triangle, 3));
-            var heptagon = new List<int>(calcPolygon(triangle, 4));
-            var octagon = new List<int>(calcPolygon(triangle, 5));
 
-            triangle.RemoveAll(X => X < 1000);
-            triangle.RemoveAll(X => X > 10000);
-
-            for (int i = 0; i < triangle.Count; i++)
+            while (stk.Count > 0)
             {
-                for (int j = 0; j < quadrilateral.Count; j++)
-                {
+                StackState2 Popped = stk.Pop();
 
+                if (Popped.cornerList.Count == NeedsCornerCnt)
+                {
+                    for (int i = 0; i < Popped.cornerList.Count; i++)
+                    {
+                        textBox1.Text = string.Format("{0}角数の{1}", Popped.cornerList[i], Popped.ValList[i]);
+                    }
+                    label1.Text = string.Format("合計={0}", Popped.ValList.Sum());
+                    for (int i = 0; i < Popped.cornerList.Count; i++)
+                        textBox1.AppendText(string.Format("{0}角数の{1}, ", Popped.cornerList[i], Popped.ValList[i]));
+                    continue;
+                }
+
+                for (int i = 3; i <= 8; i++)
+                {
+                    if (Popped.cornerList.Contains(i)) continue;
+
+                    foreach (int Each in cornerDict[i])
+                    {
+                        int ValsCnt = Popped.ValList.Count;
+                        int LastVal = Popped.ValList[ValsCnt - 1];
+
+                        Func<int, int, bool> isVisit = (pLast, pTop) =>
+                        {
+                            return pLast % 100 == pTop / 100;
+                        };
+
+                        if (isVisit(LastVal, Each) == false) continue;
+                        if (ValsCnt == NeedsCornerCnt - 1 && isVisit(Each, Popped.ValList[0]) == false) continue;
+
+                        WillPush.cornerList = new List<int>(Popped.cornerList) { i };
+                        WillPush.ValList = new List<int>(Popped.ValList) { Each };
+                        stk.Push(WillPush);
+                    }
+                }
+            }
+
+
+        }
+
+        static void CalcCorner()
+        {
+            Action<List<int>, Func<int, int>> calcCorner = (pList, pFunc) =>
+            {
+                int n = 1, Result;
+                do
+                {
+                    Result = pFunc(n++);
+                    if (1000 <= Result && Result <= 9999) pList.Add(Result);
+                } while (Result <= 9999);
+            };
+            for (int i = 3; i < 9; i++) cornerDict[i] = new List<int>();
+
+            calcCorner(cornerDict[3], n => n * (n + 1) / 2);
+            calcCorner(cornerDict[4], n => n * n);
+            calcCorner(cornerDict[5], n => n * (3 * n - 1) / 2);
+            calcCorner(cornerDict[6], n => n * (2 * n - 1));
+            calcCorner(cornerDict[7], n => n * (5 * n - 3) / 2);
+            calcCorner(cornerDict[8], n => n * (3 * n - 2));
+        }
+        private void button62_Click(object sender, EventArgs e)
+        {
+            const int Max = 10000;
+            const int MaxCount = 5;
+
+            long[] CubeArray = Enumerable.Range(1, Max).Select(X => (long)X * X * X).ToArray();
+
+            for (int i = 0; i <= CubeArray.GetUpperBound(0); i++)
+            {
+                var sb1 = new StringBuilder();
+                foreach (char Each in CubeArray[i].ToString().OrderBy(X => X))
+                    sb1.Append(Each);
+
+                var AnswerList = new List<int>() { i };
+                int Cnt = 1;
+                for (int j = i + 1; j <= CubeArray.GetUpperBound(0); j++)
+                {
+                    //桁数が異なる場合
+                    if (sb1.ToString().Length > CubeArray[j].ToString().Length) continue;
+                    if (sb1.ToString().Length < CubeArray[j].ToString().Length) break;
+
+                    var sb2 = new StringBuilder();
+
+                    foreach (char Each in CubeArray[j].ToString().OrderBy(X => X))
+                        sb2.Append(Each);
+
+                    if (sb1.ToString().Equals(sb2.ToString()))
+                    {
+                        AnswerList.Add(j);
+                        if (++Cnt > MaxCount) break;
+                    }
+                }
+                if (Cnt == MaxCount)
+                {
+                    AnswerList.ForEach(X => textBox1.AppendText((X + 1) + "の立方" + (long)(X + 1) * (X + 1) * (X + 1) + " "));
+                    label1.Text = CubeArray[i].ToString();
+                    return;
                 }
             }
         }
-        public static List<int> calcPolygon(List<int> list, int a)
+
+        private void button63_Click(object sender, EventArgs e)
         {
-            var valueList = new List<int>();
-            int value = 0;
-            for (int i = 1; i < list.Count; i++)
+            BigInteger Number = 1;
+            BigInteger mant = Number;
+            int exp = 1;
+            int anscount = 0;
+
+            for (Number = 1; Number < 10; Number++)
             {
-                value = list[i] + (a * list[i - 1]);
-                if (999 < value && value < 10000) valueList.Add(value);
+                mant = Number;
+                for (exp = 1; exp < 100; exp++)
+                {
+
+
+                    for (int i = 1; i < exp; i++)
+                    {
+                        Number = Number * mant;
+                    }
+
+                    textBox1.AppendText(Number.ToString() + " ");
+                    if (Number.ToString().Length == exp)
+                    {
+                        anscount++;
+                    }
+                    Number = mant;
+                }
             }
-            return valueList;
+            label1.Text = anscount.ToString();
         }
 
     }
 }
-//var sw = System.Diagnostics.Stopwatch.StartNew();
-//int Sum = 100000;
-//var PrimeList = new List<int>(Eratosthenes(10000));
-//int[] Prime = new int[5];
-//for(int index1 = 0; index1 < PrimeList.Count; index1++)
-//{
-//    Prime[0] = PrimeList[index1];
-//    for (int index2 = 1; index2 < PrimeList.Count; index2++)
-//    {
-//        Prime[1] = PrimeList[index2];
-//        if (Prime[0] > Prime[1]) continue;
-//        for (int index3 = 2; index3 < PrimeList.Count; index3++)
-//        {
-//            Prime[2] = PrimeList[index3];
-//            if (Prime[1] > Prime[2]) continue;
-//            for (int index4 = 3; index4 < PrimeList.Count; index4++)
-//            {
-//                Prime[3] = PrimeList[index4];
-//                if (Prime[2] > Prime[3]) continue;
-//                for (int index5 = 4; index5 < PrimeList.Count; index5++)
-//                {
-//                    Prime[4] = PrimeList[index5];
-//                    if (Prime[3] > Prime[4]) continue;
-//                    if (Judge(Prime) == true)
-//                    {
-//                        if (Sum > Prime.Sum())
-//                        {
-//                            Sum = Prime.Sum();
-//                        }
-//                    }
-//                }
-//            }
-//        }                  
-//    }
-//}
-//label1.Text = "Answer=" + Sum +" "+ sw.Elapsed.ToString();
